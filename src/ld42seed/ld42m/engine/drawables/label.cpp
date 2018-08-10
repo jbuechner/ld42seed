@@ -16,12 +16,6 @@ namespace
 
 	class label_internal : public label, std::enable_shared_from_this<label_internal>
 	{
-	public:
-		label_internal()
-		{
-			auto const filePath = os::get_process_module_path() / "hack-regular.ttf";
-			_font = std::move(create_font(filePath, 14));
-		}
 	private:
 		virtual bool draw_requested_internal(draw_context& context) const override
 		{
@@ -30,7 +24,10 @@ namespace
 
 		virtual void draw_internal(draw_context& context) override
 		{
-			al_draw_text(reinterpret_cast<ALLEGRO_FONT*>(_font->get_native_ptr()), _color, _position.x, _position.y, allegro_draw_text_flags(), _text.c_str());
+			if (_font)
+			{
+				al_draw_text(reinterpret_cast<ALLEGRO_FONT*>(_font->get_native_ptr()), _color, _position.x, _position.y, allegro_draw_text_flags(), _text.c_str());
+			}
 			_is_dirty = false;
 		}
 
@@ -47,6 +44,12 @@ namespace
 		void set_position_internal(glm::vec2 const& position) override
 		{
 			_position = position;
+			_is_dirty = true;
+		}
+
+		void set_font_internal(std::shared_ptr<font> const& font) override
+		{
+			_font = font;
 			_is_dirty = true;
 		}
 

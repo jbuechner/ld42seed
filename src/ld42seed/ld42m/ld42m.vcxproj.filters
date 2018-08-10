@@ -149,5 +149,11 @@
     <ClInclude Include="engine\aloo\details\aloo_empty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="engine\aloo\font_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\aloo\details\font_manager_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

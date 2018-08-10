@@ -20,10 +20,9 @@ namespace
 	class fps_counter_internal : public fps_counter
 	{
 	public:
-		fps_counter_internal()
+		fps_counter_internal(std::shared_ptr<font> const& font)
+			: _font{ font }
 		{
-			auto const filePath = os::get_process_module_path() / "hack-regular.ttf";
-			_font = std::move(create_font(filePath, 14));
 		}
 	private:
 		void draw_internal(draw_context& context) override
@@ -42,7 +41,7 @@ namespace
 		}
 
 		engine::drawables::details::drawables_parental<fps_counter_internal> _parental{};
-		std::shared_ptr<font> _font{ nullptr };
+		std::shared_ptr<font> const _font;
 	};
 }
 
@@ -50,9 +49,9 @@ namespace engine
 {
 	namespace drawables
 	{
-		std::shared_ptr<fps_counter> create_fps_counter()
+		std::shared_ptr<fps_counter> create_fps_counter(std::shared_ptr<font> const& font)
 		{
-			return std::make_shared<fps_counter_internal>();
+			return std::make_shared<fps_counter_internal>(font);
 		}
 	}
 }

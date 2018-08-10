@@ -3,6 +3,8 @@
 
 #include "environment.h"
 
+#include "details/font_manager_impl.h"
+
 namespace
 {
 	using namespace engine::aloo;
@@ -48,6 +50,13 @@ namespace
 			al_system<&al_init_ttf_addon>{ "unable to initializes ttf addon." };
 
 		}
+	private:
+		std::shared_ptr<font_manager> const& get_font_manager_internal() const
+		{
+			return _font_manager;
+		}
+
+		std::shared_ptr<font_manager> _font_manager{ std::make_shared<details::font_manager_impl>() };
 	};
 }
 

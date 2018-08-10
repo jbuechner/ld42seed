@@ -174,12 +174,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitwise_ops.h" />
+    <ClInclude Include="engine\aloo\details\font_manager_impl.h" />
     <ClInclude Include="engine\aloo\display.h" />
     <ClInclude Include="engine\aloo\display_loop.h" />
     <ClInclude Include="engine\aloo\drawable.h" />
     <ClInclude Include="engine\aloo\draw_context.h" />
     <ClInclude Include="engine\aloo\environment.h" />
     <ClInclude Include="engine\aloo\font.h" />
+    <ClInclude Include="engine\aloo\font_manager.h" />
     <ClInclude Include="engine\aloo\fps_component.h" />
     <ClInclude Include="engine\aloo\keyboard.h" />
     <ClInclude Include="engine\aloo\render_target_op.h" />

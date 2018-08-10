@@ -6,6 +6,7 @@
 #include <chrono>
 
 #include "ld42m/engine/aloo/environment.h"
+#include "ld42m/engine/aloo/font_manager.h"
 #include "ld42m/engine/aloo/keyboard.h"
 #include "ld42m/engine/aloo/display.h"
 #include "ld42m/engine/aloo/display_loop.h"
@@ -35,12 +36,15 @@ namespace
 			auto& display = *_display;
 			auto loop = display.create_loop();
 
+			auto const defaultFont = _environment->get_font_manager()->get_font({ "hack-regular.ttf" }, 14);
+
 			auto stage = create_stage();
 			loop->set_root_drawable(stage);
-			stage->append(create_fps_counter());
+			stage->append(create_fps_counter(defaultFont));
 
 			std::shared_ptr<label> label{ nullptr };;
 			stage->append(label = create_label());
+			label->set_font(defaultFont);
 
 			label->set_text("Hallo");
 
