@@ -4,15 +4,18 @@
 #include <atomic>
 #include <thread>
 #include <chrono>
+#include <filesystem>
 
 #include "ld42m/engine/aloo/environment.h"
 #include "ld42m/engine/aloo/font_manager.h"
 #include "ld42m/engine/aloo/keyboard.h"
 #include "ld42m/engine/aloo/display.h"
 #include "ld42m/engine/aloo/display_loop.h"
+#include "ld42m/engine/aloo/render_texture.h"
 #include "ld42m/engine/drawables/stage.h"
 #include "ld42m/engine/drawables/fps_counter.h"
 #include "ld42m/engine/drawables/label.h"
+#include "ld42m/engine/drawables/sprite.h"
 
 #include "app.h"
 
@@ -42,9 +45,23 @@ namespace
 			loop->set_root_drawable(stage);
 			stage->append(create_fps_counter(defaultFont));
 
-			std::shared_ptr<label> label{ nullptr };;
-			stage->append(label = create_label());
+			auto label{ create_label() };
+			stage->append(label);
 			label->set_font(defaultFont);
+
+			auto spritesheet{ create_render_texture({"test-spritesheet.png"}) };
+			auto sprite{ create_sprite() };
+			sprite->set_render_texture(spritesheet);
+			stage->append(sprite);
+			sprite->set_position({ 100, 100 });
+			sprite->set_source_region({ 16, 0, 32, 32 });
+			sprite->set_tint({ 1, 0, 0, 0.5 });
+
+			auto sprite2{ create_sprite() };
+			sprite2->set_render_texture(spritesheet);
+			stage->append(sprite2);
+			sprite2->set_position({ 110, 105 });
+			sprite2->set_source_region({ 16, 0, 32, 32 });
 
 			label->set_text("Hallo");
 

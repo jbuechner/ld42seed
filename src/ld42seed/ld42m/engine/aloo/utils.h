@@ -39,6 +39,11 @@ namespace engine
 
 			guarded_allegro_object* operator=(guarded_allegro_object const& other) = delete;
 
+			void release()
+			{
+				_value = nullptr;
+			}
+
 			inline T* get() const
 			{
 				return _value;
@@ -57,6 +62,7 @@ namespace engine
 		using al_display = engine::aloo::guarded_allegro_object<ALLEGRO_DISPLAY, &al_destroy_display>;
 		using al_font = engine::aloo::guarded_allegro_object<ALLEGRO_FONT, &al_destroy_font>;
 		using al_timer = engine::aloo::guarded_allegro_object<ALLEGRO_TIMER, &al_destroy_timer>;
+		using al_bitmap = guarded_allegro_object<ALLEGRO_BITMAP, &al_destroy_bitmap>;
 
 		void to_string(int32_t const& value, char* const buffer);
 

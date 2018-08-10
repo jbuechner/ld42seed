@@ -3,7 +3,7 @@
 #include <mutex>
 #include <unordered_map>
 
-#include "ld42m/os/os.h"
+#include "ld42m/path_utils.h"
 #include "ld42m/engine/aloo/font.h"
 #include "ld42m/engine/aloo/font_manager.h"
 
@@ -13,34 +13,6 @@ namespace engine
 	{
 		namespace details
 		{
-			std::filesystem::path make_local_path(std::filesystem::path const& path)
-			{
-				auto copy = path;
-				auto appdir = std::filesystem::absolute(os::get_process_module_path());
-				if (copy.is_relative())
-				{
-					copy = std::filesystem::absolute(appdir / copy);
-				}
-					
-				auto copyIter = copy.begin();
-				for (auto& part : appdir)
-				{
-					if (copyIter == copy.end())
-					{
-						return {};
-					}
-
-					if (part != *copyIter)
-					{
-						return {};
-					}
-
-					copyIter++;
-				}
-
-				return copy;
-			}
-
 			class font_manager_impl : public font_manager
 			{
 			private:

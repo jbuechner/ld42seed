@@ -1,31 +1,16 @@
 #pragma once
 
 #include <memory>
+#include <filesystem>
 
+#include "render_texture_format.h"
+#include "render_texture_flag.h"
 #include "render_target_op.h"
 
 namespace engine
 {
 	namespace aloo
 	{
-		enum class render_texture_flags
-		{
-			memory = 1,
-			no_preserve = 8,
-			alpha_test = 16,
-			min_linear = 64,
-			mag_linear = 128,
-			mipmap = 256,
-			video = 1024,
-			convert = 4096
-		};
-
-		enum class render_texture_format
-		{
-			best = 0,
-			abgr_8888_le = 25
-		};
-
 		class render_texture_lock_op;
 		class render_target_op;
 
@@ -60,6 +45,7 @@ namespace engine
 			virtual std::shared_ptr<render_texture> make_hardware_texture_internal() const = 0;
 		};
 
+		std::shared_ptr<render_texture> create_render_texture(std::filesystem::path const& path);
 		std::shared_ptr<render_texture> create_render_texture(size_t const& width, size_t const& height, render_texture_flags const& flags, render_texture_format const& format);
 	}
 }

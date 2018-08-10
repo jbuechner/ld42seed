@@ -46,6 +46,11 @@ namespace engine
 			{
 				set_position_internal(position);
 			}
+
+			inline void set_tint(glm::lowp_vec4 const& opacity)
+			{
+				set_tint_internal(opacity);
+			}
 		private:
 			virtual void draw_internal(draw_context& context) {};
 			virtual bool draw_requested_internal(draw_context& context) const { return false; };
@@ -53,6 +58,7 @@ namespace engine
 			virtual std::list<std::shared_ptr<drawable>> const& children_internal() const { return details::empty<std::list<std::shared_ptr<drawable>>>(); };
 			virtual void append_internal(std::shared_ptr<drawable> const& drawable) { };
 			virtual void set_position_internal(glm::vec2 const& position) { };
+			virtual void set_tint_internal(glm::lowp_vec4 const& opacity) { };
 		};
 	}
 }

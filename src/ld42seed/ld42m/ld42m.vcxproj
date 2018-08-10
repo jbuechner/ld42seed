@@ -98,6 +98,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="engine\aloo\details\_assert_render_texture_flags.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch_allegro.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_allegro.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="engine\aloo\details\_assert_render_texture_format.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_allegro.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch_allegro.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="engine\aloo\display.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_allegro.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch_allegro.h</PrecompiledHeaderFile>
@@ -133,6 +141,11 @@
     <ClCompile Include="engine\drawables\label.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_allegro.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch_allegro.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="path_utils.cpp" />
+    <ClCompile Include="engine\drawables\sprite.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch_allegro.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch_allegro.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="engine\drawables\stage.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch_allegro.h</PrecompiledHeaderFile>
@@ -174,7 +187,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitwise_ops.h" />
+    <ClInclude Include="engine\aloo\details\bitmap_flags_guard.h" />
+    <ClInclude Include="engine\aloo\details\bitmap_format_guard.h" />
     <ClInclude Include="engine\aloo\details\font_manager_impl.h" />
+    <ClInclude Include="engine\drawables\sprite.h" />
+    <ClInclude Include="path_utils.h" />
     <ClInclude Include="engine\aloo\display.h" />
     <ClInclude Include="engine\aloo\display_loop.h" />
     <ClInclude Include="engine\aloo\drawable.h" />
@@ -186,6 +203,8 @@
     <ClInclude Include="engine\aloo\keyboard.h" />
     <ClInclude Include="engine\aloo\render_target_op.h" />
     <ClInclude Include="engine\aloo\render_texture.h" />
+    <ClInclude Include="engine\aloo\render_texture_flag.h" />
+    <ClInclude Include="engine\aloo\render_texture_format.h" />
     <ClInclude Include="engine\aloo\render_texture_lock_op.h" />
     <ClInclude Include="engine\aloo\details\aloo_empty.h" />
     <ClInclude Include="engine\drawables\details\drawables_hierarchical.h" />

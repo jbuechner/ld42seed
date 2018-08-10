@@ -34,6 +34,7 @@ namespace
 			al_shutdown_ttf_addon();
 			al_shutdown_font_addon();
 			al_shutdown_primitives_addon();
+			al_shutdown_image_addon();
 
 		}
 		environment_internal()
@@ -45,10 +46,16 @@ namespace
 				throw std::exception{ "unable to initialize allegro." };
 			}
 
-			al_system<&al_init_primitives_addon>{ "unable to initializes primitives addon." };
-			al_system<&al_init_font_addon>{ "unable to initializes font addon." };
-			al_system<&al_init_ttf_addon>{ "unable to initializes ttf addon." };
+			al_system<&al_init_image_addon>{"unable to initialize image addon."};
+			al_system<&al_init_primitives_addon>{ "unable to initialize primitives addon." };
+			al_system<&al_init_font_addon>{ "unable to initialize font addon." };
+			al_system<&al_init_ttf_addon>{ "unable to initialize ttf addon." };
 
+			al_set_new_bitmap_format(ALLEGRO_PIXEL_FORMAT_ANY_32_WITH_ALPHA);
+			al_set_new_bitmap_flags(ALLEGRO_NO_PREMULTIPLIED_ALPHA);
+
+			//al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_INVERSE_ALPHA);
+			al_set_blender(ALLEGRO_ADD, ALLEGRO_ALPHA, ALLEGRO_INVERSE_ALPHA);
 		}
 	private:
 		std::shared_ptr<font_manager> const& get_font_manager_internal() const
